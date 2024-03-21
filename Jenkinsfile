@@ -22,7 +22,9 @@ pipeline{
         }
         stage('checkout from SCM'){
             steps{
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Devopswithaws58/register-app.git'
+                git branch: 'main', 
+                    credentialsId: 'github', 
+                    url: 'https://github.com/Devopswithaws58/register-app.git'
             }
         }
         stage('build application'){
@@ -62,6 +64,13 @@ pipeline{
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
+                }
+            }
+       }
+       stage('Trivy scan the docker image'){
+        steps{
+            script{
+                 sh ('docker run -v var/run/docker.sock:/var/run/docker.sock aquasec/trivy image devopswthaws58/register-app:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table')
                 }
             }
        }
