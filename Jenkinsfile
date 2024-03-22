@@ -13,6 +13,7 @@ pipeline{
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
     }
     stages{
         stage('cleanup workspace'){
@@ -79,6 +80,13 @@ pipeline{
             script{
                 sh 'docker rmi ${IMAGE_NAME}:${IMAGE_TAG}'
                 sh 'docker rmi ${IMAGE_NAME}:latest'
+                }
+            }
+       }
+       stage('trigger CD Pipeline'){
+        steps{
+            script{
+                sh "curl -v -k --user Cloud-User:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG:${IMAGE_TAG}' 'ec2-13-233-199-158.ap-south-1.compute.amazonaws.com:8080/job/GitOps-register-app-cd/buildWithParameters?token=gitops-token'"
                 }
             }
        }
