@@ -70,7 +70,7 @@ pipeline{
        stage('Trivy scan the docker image'){
         steps{
             script{
-                 sh ('docker run --rm -v=var/run/docker.sock:/var/run/docker.sock aquasec/trivy image devopswthaws58/register-app:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table')
+                 sh ('docker run --rm -v "/$(pwd)/var/run/docker.sock:/var/run/docker.sock" aquasec/trivy image devopswthaws58/register-app:latest --no-progress --scanners vuln --exit-code 0 --severity HIGH,CRITICAL --format table')
                 }
             }
        }
