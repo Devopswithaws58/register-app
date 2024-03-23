@@ -31,7 +31,7 @@
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
 
-   <h1> Thank You, I did deploy the application Argocd to be automated and updated latest deployment file on EKS cluster  </h1>
+   <h1> Thank You, testing application deployment to eks cluster success</h1>
    <br>
    <h1> Happy Learning Saidarao. See You Again </h1>
    
