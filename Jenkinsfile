@@ -86,7 +86,7 @@ pipeline{
        stage('trigger CD Pipeline'){
         steps{
             script{
-                sh "curl -vk --user Cloud-User:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG:${IMAGE_TAG}' 'http://ec2-13-233-199-158.ap-south-1.compute.amazonaws.com:8080/job/GitOps-register-app-cd/buildWithParameters?token=gitops-token'"
+                sh "curl -vk --user Cloud-User:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG:${IMAGE_TAG}' 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080/job/GitOps-Register-Application-CD/buildWithParameters?token=GitOps-token'"
                 }
             }
        }
