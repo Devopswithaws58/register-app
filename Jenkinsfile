@@ -13,7 +13,7 @@ pipeline{
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-        JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+        //JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
     stages{
         stage('cleanup workspace'){
@@ -83,13 +83,10 @@ pipeline{
                 }
             }
        }
-       stage('trigger CD Pipeline'){
+       stage('trigger CD Pipeline'){ 
         steps{
             script{
-                triggerRemoteJob auth: TokenAuth(apiToken: ${JENKINS_API_TOKEN}, userName: 'Cloud-User'), 
-                                 job: 'GitOps-Register-Application-CD', 
-                                 parameters: StringParameters(parameters: 'IMAGE_TAG'), 
-                                 remoteJenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080/'
+                buildTokenTrigger credentialsId: 'token', jenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080', job: 'GitOps-Register-Application-CD', parameters: [IMAGE_TAG: '${IMAGE_TAG}']
                 }
             }
        }
