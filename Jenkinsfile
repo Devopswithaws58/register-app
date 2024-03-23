@@ -86,7 +86,10 @@ pipeline{
        stage('trigger CD Pipeline'){
         steps{
             script{
-                sh "curl -v -k --user Cloud-User:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080/job/GitOps-Register-Application-CD/buildWithParameters?token=SuperSecret'"
+                triggerRemoteJob auth: TokenAuth(apiToken: ${JENKINS_API_TOKEN}, userName: 'Cloud-User'), 
+                                 job: 'GitOps-Register-Application-CD', 
+                                 parameters: StringParameters(parameters: 'IMAGE_TAG'), 
+                                 remoteJenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080/'
                 }
             }
        }
