@@ -31,8 +31,8 @@
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
 
-   <h1> Thank You, Saidarao </h1>
+   <h1> Thank You </h1>
    <br>
-   <h1> Happy Learning Saidarao Devarakonda. See You Again </h1>
+   <h1> Happy Learning Saidarao. See You Again </h1>
    
 </form>
