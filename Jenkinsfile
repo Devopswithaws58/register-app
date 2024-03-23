@@ -86,7 +86,7 @@ pipeline{
        stage('trigger CD Pipeline'){ 
         steps{
             script{
-                buildTokenTrigger credentialsId: 'token', jenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080', job: 'GitOps-Register-Application-CD', parameters: [IMAGE_TAG: 'IMAGE_TAG']
+                buildTokenTrigger credentialsId: 'token', jenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080', job: 'GitOps-Register-Application-CD', parameters: [IMAGE_TAG: IMAGE_TAG]
                 }
             }
        }
