@@ -7,7 +7,7 @@ pipeline{
         jdk 'Java17'
     }
     environment{
-        APP_NAME = 'register-app'
+        APP_NAME = 'register-app-pipeline'
         RELEASE = '1.0.0'
         DOCKER_USER = 'devopswthaws58'
         DOCKER_PASS = 'dockerhub'
@@ -86,7 +86,7 @@ pipeline{
        stage('trigger CD Pipeline'){ 
         steps{
             script{
-                buildTokenTrigger credentialsId: 'token', jenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080', job: 'GitOps-Register-Application-CD', parameters:[IMAGE_TAG: IMAGE_TAG]
+                buildTokenTrigger credentialsId: 'token', jenkinsUrl: 'http://ec2-3-109-59-56.ap-south-1.compute.amazonaws.com:8080', job: 'GitOps-Register-Application-CD', parameters: [IMAGE_TAG: 'IMAGE_TAG']
                 }
             }
        }
