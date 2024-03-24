@@ -31,8 +31,8 @@
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
 
-   <h1> Thank You, testing application deployment to eks cluster success</h1>
+   <h1> Thank You, going to deploy the applicatuon to the cluster for 26th build </h1>
    <br>
-   <h1> Happy Learning Saidarao. See You Again </h1>
+   <h1> Happy Learning Saidarao D. See You Again </h1>
    
 </form>
